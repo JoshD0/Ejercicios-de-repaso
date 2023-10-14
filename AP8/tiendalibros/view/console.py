@@ -57,10 +57,14 @@ class UIConsola:
         try:
             isbn = input("Ingrese el isbn del libro que desea agregar a su carrito de compras: ")
             cantidad = int(input("Ingrese la cantidad de libros que deseas agregar a su carrito de compras: "))
+            bul= False
             for isbl in self.tienda_libros.catalogo:
                 if isbl == isbn:
+                    bul= True
+                if bul == True: 
                     self.tienda_libros.agregar_libro_a_carrito(self.tienda_libros.catalogo[isbl],cantidad)
-            print(LibroInexistenteEnCatalogoError(isbn))
+                else:
+                    print(LibroInexistenteEnCatalogoError(isbn))
         except ExistenciasInsuficientesError as eie:
             print(f"Error: ExistenciasInsuficientesError - {eie}")
         except LibroAgotadoError as lae:
